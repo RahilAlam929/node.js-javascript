@@ -3,6 +3,8 @@
 #include <vector>
 #include "cleanup_queue-inl.h"
 
+
+
 namespace node {
 
 std::vector<CleanupQueue::CleanupHookCallback> CleanupQueue::GetOrdered()
@@ -38,6 +40,9 @@ void CleanupQueue::Drain() {
     cleanup_hooks_.erase(cb);
   }
 }
+// This hook was removed from the Cleanup_hook_ set during another 
+// hook that was run earlier. Nothing to do her
+
 
 size_t CleanupQueue::CleanupHookCallback::Hash::operator()(
     const CleanupHookCallback& cb) const {
